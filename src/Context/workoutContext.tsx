@@ -1,20 +1,30 @@
-'use client'
+"use client"
 
 import { Workout } from '@/Type/Type';
 import React, { createContext, ReactNode, useState } from 'react';
 
+interface WorkoutContextType {
+    todaysPlan: Workout[]
+    setTodaysPlan: React.Dispatch<React.SetStateAction<Workout[]>>
+    saved: Workout[]
+    setSaved: React.Dispatch<React.SetStateAction<Workout[]>>
+}
 
-export const WorkoutContext=createContext({})
+export const WorkoutContext = createContext({} as WorkoutContextType)
 
 const WorkoutContextProvider = ({children}:{children:ReactNode}) => {
-    const [todaysPlan,setTodaysPlan]=useState<Workout[]>([])
-    const [saved,setSaved]=useState<Workout[]>([])
-    const sharedData={
+
+    const [todaysPlan,setTodaysPlan] = useState<Workout[]>([])
+
+    const [saved,setSaved] = useState<Workout[]>([])
+
+    const sharedData = {
         todaysPlan,
         setTodaysPlan,
         saved,
         setSaved
     }
+
     return (
         <WorkoutContext.Provider value={sharedData}>
             {children}

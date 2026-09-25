@@ -1,20 +1,24 @@
-import Link from "next/link";
-import { Workout } from "@/Type/Type";
-import { useContext } from "react";
-import { WorkoutContext } from "@/Context/workoutContext";
+"use client"
 
-const MyPlanCard = ({ workout }: { workout: Workout }) => {
-    const { todaysPlan, setTodaysPlan } = useContext(WorkoutContext)
+import { WorkoutContext } from "@/Context/workoutContext";
+import { Workout } from "@/Type/Type";
+import React, { useContext } from "react";
+
+const SavedCard = ({ workout }: { workout: Workout }) => {
+
+    const { saved, setSaved } = useContext(WorkoutContext)
 
     const handleRemove = () => {
-        const remainingWorkouts = todaysPlan.filter(
+        const remainingWorkouts = saved.filter(
             (item) => item.id !== workout.id
         )
 
-        setTodaysPlan(remainingWorkouts)
+        setSaved(remainingWorkouts)
     }
+
     return (
         <div className="flex w-full items-center gap-4 rounded-xl border border-[#292c35] bg-[#15171d] p-3 text-white">
+
             {/* Image */}
             <div className="h-[60px] w-[108px] shrink-0 overflow-hidden rounded-lg">
                 <img
@@ -34,7 +38,6 @@ const MyPlanCard = ({ workout }: { workout: Workout }) => {
                     {workout.equipment}
                 </p>
 
-                {/* Stats */}
                 <div className="mt-2 flex items-center gap-3 text-[10px] text-gray-400">
                     <span className="flex items-center gap-1">
                         <span className="text-[#b8ff00]">◷</span>
@@ -55,23 +58,22 @@ const MyPlanCard = ({ workout }: { workout: Workout }) => {
 
             {/* Actions */}
             <div className="flex shrink-0 items-center gap-2">
-                <Link
-                    href={`/exercise/${workout.id}`}
-                    className="rounded-full border border-[#343840] px-4 py-2 text-[10px] text-gray-300 transition hover:bg-[#1d2027]"
-                >
-                    View Details
-                </Link>
 
-                <button className="rounded-full bg-[#b8ff00] px-4 py-2 text-[10px] font-semibold text-black transition hover:bg-[#c8ff00]">
-                    ✓ Mark as Done
+                <button className="rounded-full border border-[#343840] px-4 py-2 text-[10px] text-gray-300 transition hover:bg-[#1d2027]">
+                    View Details
                 </button>
 
-                <button onClick={handleRemove} className="ml-1 text-lg text-gray-600 transition hover:text-white">
+                <button
+                    onClick={handleRemove}
+                    className="ml-1 text-lg text-gray-600 transition hover:text-white"
+                >
                     ×
                 </button>
+
             </div>
+
         </div>
     );
 };
 
-export default MyPlanCard;
+export default SavedCard;

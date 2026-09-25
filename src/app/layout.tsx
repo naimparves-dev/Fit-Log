@@ -25,14 +25,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-
+      data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#0D0F12] text-white">
         <WorkoutContextProvider>
-          <Navbar></Navbar>
-          {children}
-          <Footer></Footer>
+          <Navbar />
+
+          <main className="pt-[80px]">
+            {children}
+          </main>
+
+          <Footer />
+
           <ToastContainer />
         </WorkoutContextProvider>
       </body>
