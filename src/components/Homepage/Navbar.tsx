@@ -59,8 +59,8 @@ const Navbar = () => {
         <div className="flex items-center gap-6">
 
           {/* Plan */}
-          <button
-            onClick={() => (window.location.href = "/MyPlan")}
+          <Link
+            href="/MyPlan"
             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white"
           >
             <span>Plan</span>
@@ -68,11 +68,11 @@ const Navbar = () => {
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#c8ff00] text-[11px] font-bold text-black">
               {todaysPlan.length}
             </span>
-          </button>
+          </Link>
 
           {/* Saved */}
-          <button
-            onClick={() => (window.location.href = "/MyPlan")}
+          <Link
+            href="/MyPlan"
             className="flex items-center gap-2 text-sm text-gray-500 hover:text-white"
           >
             <span>Saved</span>
@@ -80,7 +80,7 @@ const Navbar = () => {
             <span className="flex h-5 w-5 items-center justify-center rounded-full border border-gray-700 text-[10px]">
               {saved.length}
             </span>
-          </button>
+          </Link>
 
         </div>
 

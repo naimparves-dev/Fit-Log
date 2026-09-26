@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+// import { ArrowDown } from "lucide-react";
 import banner from "../../assets/banner.png";
+import { FaArrowDown } from "react-icons/fa";
 
 const Hero = () => {
   return (
@@ -23,10 +25,11 @@ const Hero = () => {
           </p>
 
           <Link
-            href="#workouts"
-            className="mt-6 inline-flex rounded-md bg-[#c8ff00] px-6 py-3 text-[11px] font-bold uppercase text-black"
+            href="#library"
+            className="mt-6 inline-flex items-center gap-2 rounded-md bg-[#c8ff00] px-6 py-3 text-[11px] font-bold uppercase text-black"
           >
             Browse Workouts
+            <FaArrowDown size={12} />
           </Link>
         </div>
 

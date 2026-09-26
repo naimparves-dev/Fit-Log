@@ -4,6 +4,7 @@ import MyPlanCard from '@/components/shared/MyPlanCard';
 import SavedCard from '@/components/shared/SavedCard';
 import { WorkoutContext } from '@/Context/workoutContext';
 import { Workout } from '@/Type/Type';
+import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 
 const MyPlanPage = () => {
@@ -113,22 +114,20 @@ const MyPlanPage = () => {
 
                     <button
                         onClick={() => setActiveTab("plan")}
-                        className={`h-[28px] rounded-[6px] px-[17px] text-[10px] transition ${
-                            activeTab === "plan"
-                                ? "bg-[#242933] font-semibold text-white"
-                                : "text-[#858b96]"
-                        }`}
+                        className={`h-[28px] rounded-[6px] px-[17px] text-[10px] transition ${activeTab === "plan"
+                            ? "bg-[#242933] font-semibold text-white"
+                            : "text-[#858b96]"
+                            }`}
                     >
                         Todays Plan
                     </button>
 
                     <button
                         onClick={() => setActiveTab("saved")}
-                        className={`h-[28px] rounded-[6px] px-[17px] text-[10px] transition ${
-                            activeTab === "saved"
-                                ? "bg-[#242933] font-semibold text-white"
-                                : "text-[#858b96]"
-                        }`}
+                        className={`h-[28px] rounded-[6px] px-[17px] text-[10px] transition ${activeTab === "saved"
+                            ? "bg-[#242933] font-semibold text-white"
+                            : "text-[#858b96]"
+                            }`}
                     >
                         Saved
                     </button>
@@ -212,9 +211,12 @@ const MyPlanPage = () => {
                                     Browse the library and add a lift to get today moving.
                                 </p>
 
-                                <button className="mt-[20px] h-[34px] rounded-full bg-[#b8ff00] px-[22px] text-[10px] font-semibold text-black">
+                                <Link
+                                    href="/#library"
+                                    className="mt-[20px] flex h-[34px] items-center rounded-full bg-[#b8ff00] px-[22px] text-[10px] font-semibold text-black"
+                                >
                                     Go to workouts
-                                </button>
+                                </Link>
 
                             </div>
 
@@ -258,9 +260,12 @@ const MyPlanPage = () => {
                                     Browse the library and save a lift to see it here.
                                 </p>
 
-                                <button className="mt-[20px] h-[34px] rounded-full bg-[#b8ff00] px-[22px] text-[10px] font-semibold text-black">
+                                <Link
+                                    href="/#library"
+                                    className="mt-[20px] flex h-[34px] items-center rounded-full bg-[#b8ff00] px-[22px] text-[10px] font-semibold text-black"
+                                >
                                     Go to workouts
-                                </button>
+                                </Link>
 
                             </div>
 
