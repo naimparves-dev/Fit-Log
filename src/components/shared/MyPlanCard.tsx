@@ -83,7 +83,8 @@ const MyPlanCard = ({ workout }: { workout: Workout }) => {
 
 
                 <button
-                    className="flex-1 rounded-full bg-[#b8ff00] px-3 py-2 text-[10px] font-semibold text-black transition hover:bg-[#c8ff00] sm:flex-none sm:px-4"
+                    onClick={handleRemove}
+                    className="rounded-full bg-[#b8ff00] px-4 py-2 text-[10px] font-semibold text-black transition hover:bg-[#c8ff00]"
                 >
                     ✓ Mark as Done
                 </button>
