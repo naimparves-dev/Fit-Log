@@ -8,9 +8,9 @@ Choose a workout, add it to today's plan, save your favorites, and organize your
 
 ## 🚀 Live Project
 
-**Live Demo:**
+**Live Demo:** https://fit-log-orcin.vercel.app/
 
-**GitHub Repository:**
+**GitHub Repository:** https://github.com/naimparves-dev/Fit-Log
 
 ---
 
