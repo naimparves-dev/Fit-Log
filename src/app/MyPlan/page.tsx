@@ -4,6 +4,7 @@ import MyPlanCard from '@/components/shared/MyPlanCard';
 import SavedCard from '@/components/shared/SavedCard';
 import { WorkoutContext } from '@/Context/workoutContext';
 import { Workout } from '@/Type/Type';
+import { FiChevronDown } from 'react-icons/fi';
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 
@@ -16,11 +17,8 @@ const MyPlanPage = () => {
 
     const activeData = activeTab === "plan" ? todaysPlan : saved
 
-    const sortedData = [...activeData].sort((a, b) => {
 
-        if (sortBy === "name") {
-            return a.name.localeCompare(b.name)
-        }
+    const sortedData = [...activeData].sort((a, b) => {
 
         if (sortBy === "duration") {
             return a.duration - b.duration
@@ -28,10 +26,6 @@ const MyPlanPage = () => {
 
         if (sortBy === "calories") {
             return a.caloriesBurned - b.caloriesBurned
-        }
-
-        if (sortBy === "difficulty") {
-            return a.difficulty.localeCompare(b.difficulty)
         }
 
         if (sortBy === "rating") {
@@ -58,6 +52,7 @@ const MyPlanPage = () => {
 
             {/* Heading */}
             <div>
+
                 <h2 className="text-[28px] leading-[34px] font-bold uppercase text-white">
                     MY PLAN
                 </h2>
@@ -65,6 +60,7 @@ const MyPlanPage = () => {
                 <p className="mt-[4px] text-[13px] leading-[18px] text-[#858b96]">
                     Cap of five lifts for today. Finish them, then load more.
                 </p>
+
             </div>
 
 
@@ -72,6 +68,7 @@ const MyPlanPage = () => {
             <div className="mt-[23px] grid h-[108px] grid-cols-3 overflow-hidden rounded-[14px] border border-[#252a32] bg-[#13161c]">
 
                 <div className="flex flex-col justify-center border-r border-[#252a32] px-[21px]">
+
                     <p className="text-[10px] leading-[14px] text-[#858b96]">
                         Exercises
                     </p>
@@ -79,10 +76,12 @@ const MyPlanPage = () => {
                     <h3 className="mt-[3px] text-[32px] leading-[36px] font-bold text-[#b8ff00]">
                         {totalExercises}
                     </h3>
+
                 </div>
 
 
                 <div className="flex flex-col justify-center border-r border-[#252a32] px-[21px]">
+
                     <p className="text-[10px] leading-[14px] text-[#858b96]">
                         Minutes
                     </p>
@@ -90,10 +89,12 @@ const MyPlanPage = () => {
                     <h3 className="mt-[3px] text-[32px] leading-[36px] font-bold text-white">
                         {totalMinutes}
                     </h3>
+
                 </div>
 
 
                 <div className="flex flex-col justify-center px-[21px]">
+
                     <p className="text-[10px] leading-[14px] text-[#858b96]">
                         Calories
                     </p>
@@ -101,6 +102,7 @@ const MyPlanPage = () => {
                     <h3 className="mt-[3px] text-[32px] leading-[36px] font-bold text-white">
                         {totalCalories}
                     </h3>
+
                 </div>
 
             </div>
@@ -122,6 +124,7 @@ const MyPlanPage = () => {
                         Todays Plan
                     </button>
 
+
                     <button
                         onClick={() => setActiveTab("saved")}
                         className={`h-[28px] rounded-[6px] px-[17px] text-[10px] transition ${activeTab === "saved"
@@ -142,32 +145,36 @@ const MyPlanPage = () => {
                         Sort By
                     </span>
 
-                    <select
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                        className="h-[34px] w-[82px] rounded-[8px] border border-[#292d35] bg-[#15181e] px-[10px] text-[10px] text-[#d0d3d8] outline-none"
-                    >
-                        <option value="duration">
-                            Duration
-                        </option>
 
-                        <option value="name">
-                            Name
-                        </option>
+                    <div className="relative">
 
-                        <option value="calories">
-                            Calories
-                        </option>
+                        <select
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value)}
+                            className="h-[34px] w-[90px] appearance-none rounded-[8px] border border-[#292d35] bg-[#15181e] px-[10px] pr-[25px] text-[10px] text-[#d0d3d8] outline-none"
+                        >
 
-                        <option value="difficulty">
-                            Difficulty
-                        </option>
+                            <option value="duration">
+                                Duration
+                            </option>
 
-                        <option value="rating">
-                            Rating
-                        </option>
+                            <option value="calories">
+                                Calories
+                            </option>
 
-                    </select>
+                            <option value="rating">
+                                Rating
+                            </option>
+
+                        </select>
+
+
+                        <FiChevronDown
+                            size={13}
+                            className="pointer-events-none absolute right-[8px] top-1/2 -translate-y-1/2 text-[#858b96]"
+                        />
+
+                    </div>
 
                 </div>
 
