@@ -11,8 +11,35 @@ const MyPlanPage = () => {
     const { todaysPlan, saved } = useContext(WorkoutContext)
 
     const [activeTab, setActiveTab] = useState("plan")
+    const [sortBy, setSortBy] = useState("duration")
 
     const activeData = activeTab === "plan" ? todaysPlan : saved
+
+    const sortedData = [...activeData].sort((a, b) => {
+
+        if (sortBy === "name") {
+            return a.name.localeCompare(b.name)
+        }
+
+        if (sortBy === "duration") {
+            return a.duration - b.duration
+        }
+
+        if (sortBy === "calories") {
+            return a.caloriesBurned - b.caloriesBurned
+        }
+
+        if (sortBy === "difficulty") {
+            return a.difficulty.localeCompare(b.difficulty)
+        }
+
+        if (sortBy === "rating") {
+            return b.rating - a.rating
+        }
+
+        return 0
+    })
+
 
     const totalExercises = activeData.length
 
@@ -23,6 +50,7 @@ const MyPlanPage = () => {
     const totalCalories = activeData.reduce((total, workout) => {
         return total + workout.caloriesBurned
     }, 0)
+
 
     return (
         <section className="mx-auto w-full max-w-[1040px] px-0 pt-[38px] pb-[60px]">
@@ -42,7 +70,6 @@ const MyPlanPage = () => {
             {/* Statistics */}
             <div className="mt-[23px] grid h-[108px] grid-cols-3 overflow-hidden rounded-[14px] border border-[#252a32] bg-[#13161c]">
 
-                {/* Exercises */}
                 <div className="flex flex-col justify-center border-r border-[#252a32] px-[21px]">
                     <p className="text-[10px] leading-[14px] text-[#858b96]">
                         Exercises
@@ -54,7 +81,6 @@ const MyPlanPage = () => {
                 </div>
 
 
-                {/* Minutes */}
                 <div className="flex flex-col justify-center border-r border-[#252a32] px-[21px]">
                     <p className="text-[10px] leading-[14px] text-[#858b96]">
                         Minutes
@@ -66,7 +92,6 @@ const MyPlanPage = () => {
                 </div>
 
 
-                {/* Calories */}
                 <div className="flex flex-col justify-center px-[21px]">
                     <p className="text-[10px] leading-[14px] text-[#858b96]">
                         Calories
@@ -118,7 +143,11 @@ const MyPlanPage = () => {
                         Sort By
                     </span>
 
-                    <select className="h-[34px] w-[82px] rounded-[8px] border border-[#292d35] bg-[#15181e] px-[10px] text-[10px] text-[#d0d3d8] outline-none">
+                    <select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                        className="h-[34px] w-[82px] rounded-[8px] border border-[#292d35] bg-[#15181e] px-[10px] text-[10px] text-[#d0d3d8] outline-none"
+                    >
                         <option value="duration">
                             Duration
                         </option>
@@ -138,6 +167,7 @@ const MyPlanPage = () => {
                         <option value="rating">
                             Rating
                         </option>
+
                     </select>
 
                 </div>
@@ -148,7 +178,6 @@ const MyPlanPage = () => {
             {/* Workout Content */}
             <div className="mt-[20px]">
 
-                {/* Today's Plan */}
                 {
                     activeTab === "plan" && (
 
@@ -157,7 +186,7 @@ const MyPlanPage = () => {
                             <div className="space-y-[14px]">
 
                                 {
-                                    todaysPlan.map((data: Workout) => {
+                                    sortedData.map((data: Workout) => {
 
                                         return (
                                             <MyPlanCard
@@ -195,7 +224,6 @@ const MyPlanPage = () => {
                 }
 
 
-                {/* Saved */}
                 {
                     activeTab === "saved" && (
 
@@ -204,7 +232,7 @@ const MyPlanPage = () => {
                             <div className="space-y-[14px]">
 
                                 {
-                                    saved.map((data: Workout) => {
+                                    sortedData.map((data: Workout) => {
 
                                         return (
                                             <SavedCard
